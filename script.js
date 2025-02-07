@@ -26,10 +26,6 @@ function getHumanChoice() {
     return userChoice.charAt(0).toUpperCase() + userChoice.slice(1).toLowerCase();
 }
 
-// Score
-let humanScore = 0;
-let computerScore = 0;
-
 // Define a single round
 function playRound(humanChoice, computerChoice) {
     // Get user and computer's choices and declare results
@@ -37,16 +33,43 @@ function playRound(humanChoice, computerChoice) {
         humanChoice === 'Scissors' && computerChoice === 'Paper' ||
         humanChoice === 'Paper' && computerChoice === 'Rock'
     ) {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}`);
-        humanScore++;
+        return `You win! ${humanChoice} beats ${computerChoice}`;
     } else if (humanChoice === computerChoice) {
-        console.log("It's a draw!");
+        return 'It\'s a draw!';
     } else {
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
-        computerScore++;
+        return `You lose! ${computerChoice} beats ${humanChoice}`;
     }
 }
 
-playRound(getHumanChoice(), getComputerChoice());
-console.log(humanScore, computerScore);
-// Entire game
+// Play an entire game consisting of 5 rounds
+function playGame() {
+    // Initialize scores
+    let humanScore = 0;
+    let computerScore = 0;
+
+    // Loop over each round and update score
+    for (i = 0; i < 5; i++) {
+        let result = playRound(getHumanChoice(), getComputerChoice());
+
+        console.log(result);
+
+        if (result.includes('win')) {
+            humanScore++;
+        } else if (result.includes('lose')) {
+            computerScore++;
+        } else {
+            continue;
+        }
+
+    }
+
+    if (humanScore > computerScore) {
+        console.log(`You won! The final score is:\nPlayer:${humanScore} Computer:${computerScore}`);
+    } else if (humanScore < computerScore) {
+        console.log(`You lose! The final score is:\nPlayer:${humanScore} Computer:${computerScore}`)
+    } else {
+        console.log(`It's a draw! The final score is:\nPlayer:${humanScore} Computer:${computerScore}`);
+    }
+}
+
+playGame();
