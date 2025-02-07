@@ -19,6 +19,12 @@ function getComputerChoice() {
     }
 }
 
-console.log(getComputerChoice());
-// Player choice
+// Get Player choice
+function getHumanChoice() {
+    let userChoice = prompt("Rock, Paper or Scissors?");
+
+    return userChoice.toLowerCase();
+}
+
+console.log(getHumanChoice());
 // Points and rounds
