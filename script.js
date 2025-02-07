@@ -1,1 +1,24 @@
-console.log('hi');
+// Get a random int to use as computer choice
+function getRandomInt(min, max) {
+    const minCeiled = Math.ceil(1);
+    const maxFloored = Math.floor(3);
+    // return an int value between "min" and "max" inclusive
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
+};
+
+// Generate random computer choice
+function getComputerChoice() {
+    let choiceNum = getRandomInt(1, 3);
+
+    if (choiceNum === 1) {
+        return 'rock';
+    } else if (choiceNum === 2) {
+        return 'paper';
+    } else {
+        return 'scissors';
+    }
+}
+
+console.log(getComputerChoice());
+// Player choice
+// Points and rounds
