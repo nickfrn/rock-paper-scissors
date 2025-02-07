@@ -11,11 +11,11 @@ function getComputerChoice() {
     let choiceNum = getRandomInt(1, 3);
 
     if (choiceNum === 1) {
-        return 'rock';
+        return 'Rock';
     } else if (choiceNum === 2) {
-        return 'paper';
+        return 'Paper';
     } else {
-        return 'scissors';
+        return 'Scissors';
     }
 }
 
@@ -23,8 +23,30 @@ function getComputerChoice() {
 function getHumanChoice() {
     let userChoice = prompt("Rock, Paper or Scissors?");
 
-    return userChoice.toLowerCase();
+    return userChoice.charAt(0).toUpperCase() + userChoice.slice(1).toLowerCase();
 }
 
-console.log(getHumanChoice());
-// Points and rounds
+// Score
+let humanScore = 0;
+let computerScore = 0;
+
+// Define a single round
+function playRound(humanChoice, computerChoice) {
+    // Get user and computer's choices and declare results
+    if (humanChoice === 'Rock' && computerChoice === 'Scissors' ||
+        humanChoice === 'Scissors' && computerChoice === 'Paper' ||
+        humanChoice === 'Paper' && computerChoice === 'Rock'
+    ) {
+        console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+        humanScore++;
+    } else if (humanChoice === computerChoice) {
+        console.log("It's a draw!");
+    } else {
+        console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+        computerScore++;
+    }
+}
+
+playRound(getHumanChoice(), getComputerChoice());
+console.log(humanScore, computerScore);
+// Entire game
