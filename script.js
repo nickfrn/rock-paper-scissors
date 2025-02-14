@@ -57,6 +57,14 @@ container.appendChild(paperBtn);
 container.appendChild(scissorsBtn);
 container.appendChild(roundResult);
 
+let humanScore = 0;
+let computerScore = 0;
+
+let score = document.createElement('div');
+score.textContent = `Player: ${humanScore} Computer: ${computerScore}`;
+
+container.appendChild(score);
+
 document.body.appendChild(container);
 
 rockBtn.addEventListener('click', () => {
@@ -65,6 +73,11 @@ rockBtn.addEventListener('click', () => {
     // Clean roundResult to avoid round results stacking
     roundResult.textContent = '';
     roundResult.textContent = result;
+
+    if (result.includes('win')) humanScore++;
+    if (result.includes('lose')) computerScore++;
+
+    score.textContent = `Player: ${humanScore} Computer: ${computerScore}`;
 });
 
 paperBtn.addEventListener('click', () => {
@@ -73,6 +86,11 @@ paperBtn.addEventListener('click', () => {
     // Clean roundResult to avoid round results stacking
     roundResult.textContent = '';
     roundResult.textContent = result;
+
+    if (result.includes('win')) humanScore++;
+    if (result.includes('lose')) computerScore++;
+
+    score.textContent = `Player: ${humanScore} Computer: ${computerScore}`;
 });
 
 scissorsBtn.addEventListener('click', () => {
@@ -81,37 +99,9 @@ scissorsBtn.addEventListener('click', () => {
     // Clean roundResult to avoid round results stacking
     roundResult.textContent = '';
     roundResult.textContent = result;
+
+    if (result.includes('win')) humanScore++;
+    if (result.includes('lose')) computerScore++;
+
+    score.textContent = `Player: ${humanScore} Computer: ${computerScore}`;
 });
-
-// Play an entire game consisting of 5 rounds
-// function playGame() {
-//     // Initialize scores
-//     let humanScore = 0;
-//     let computerScore = 0;
-
-//     // Loop over each round and update score
-//     for (i = 0; i < 5; i++) {
-//         let result = playRound(getHumanChoice(), getComputerChoice());
-
-//         console.log(result);
-
-//         if (result.includes('win')) {
-//             humanScore++;
-//         } else if (result.includes('lose')) {
-//             computerScore++;
-//         } else {
-//             continue;
-//         }
-
-//     }
-
-//     if (humanScore > computerScore) {
-//         console.log(`You won! The final score is:\nPlayer:${humanScore} Computer:${computerScore}`);
-//     } else if (humanScore < computerScore) {
-//         console.log(`You lose! The final score is:\nPlayer:${humanScore} Computer:${computerScore}`)
-//     } else {
-//         console.log(`It's a draw! The final score is:\nPlayer:${humanScore} Computer:${computerScore}`);
-//     }
-// }
-
-playGame();
