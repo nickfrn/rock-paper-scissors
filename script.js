@@ -41,6 +41,22 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
+// Announce full game winner
+function getWinner(playerScore, cpuScore) {
+    roundResult.textContent  = '';
+    score.textContent = '';
+
+    const winner = document.createElement('div');
+
+    if (playerScore > cpuScore) {
+        winner.textContent = 'Player wins!';
+    } else {
+        winner.textContent = 'Computer wins!';
+    }
+
+    container.appendChild(winner);
+}
+
 // Single game function to use inside event listener
 function playGame(event) {
     let userSelection = event.target.textContent;
@@ -55,6 +71,14 @@ function playGame(event) {
     if (result.includes('lose')) computerScore++;
 
     score.textContent = `Player: ${humanScore} Computer: ${computerScore}`;
+
+    if (humanScore === 5 || computerScore === 5) {
+        rockBtn.removeEventListener('click', playGame);
+        paperBtn.removeEventListener('click', playGame);
+        scissorsBtn.removeEventListener('click', playGame);
+    
+        getWinner(humanScore, computerScore);
+    }
 }
 
 const container = document.createElement('div');
