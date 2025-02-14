@@ -41,6 +41,22 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
+// Single game function to use inside event listener
+function playGame(event) {
+    let userSelection = event.target.textContent;
+
+    let result = playRound(userSelection, getComputerChoice());
+    
+    // Clean roundResult to avoid round results stacking
+    roundResult.textContent = '';
+    roundResult.textContent = result;
+
+    if (result.includes('win')) humanScore++;
+    if (result.includes('lose')) computerScore++;
+
+    score.textContent = `Player: ${humanScore} Computer: ${computerScore}`;
+}
+
 const container = document.createElement('div');
 
 const rockBtn = document.createElement('button');
@@ -67,41 +83,6 @@ container.appendChild(score);
 
 document.body.appendChild(container);
 
-rockBtn.addEventListener('click', () => {
-    let result = playRound('Rock', getComputerChoice());
-    
-    // Clean roundResult to avoid round results stacking
-    roundResult.textContent = '';
-    roundResult.textContent = result;
-
-    if (result.includes('win')) humanScore++;
-    if (result.includes('lose')) computerScore++;
-
-    score.textContent = `Player: ${humanScore} Computer: ${computerScore}`;
-});
-
-paperBtn.addEventListener('click', () => {
-    let result = playRound('Paper', getComputerChoice());
-    
-    // Clean roundResult to avoid round results stacking
-    roundResult.textContent = '';
-    roundResult.textContent = result;
-
-    if (result.includes('win')) humanScore++;
-    if (result.includes('lose')) computerScore++;
-
-    score.textContent = `Player: ${humanScore} Computer: ${computerScore}`;
-});
-
-scissorsBtn.addEventListener('click', () => {
-    let result = playRound('Scissors', getComputerChoice());
-    
-    // Clean roundResult to avoid round results stacking
-    roundResult.textContent = '';
-    roundResult.textContent = result;
-
-    if (result.includes('win')) humanScore++;
-    if (result.includes('lose')) computerScore++;
-
-    score.textContent = `Player: ${humanScore} Computer: ${computerScore}`;
-});
+rockBtn.addEventListener('click', playGame);
+paperBtn.addEventListener('click', playGame);
+scissorsBtn.addEventListener('click', playGame);
