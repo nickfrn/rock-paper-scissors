@@ -50,25 +50,37 @@ paperBtn.textContent = 'Paper';
 const scissorsBtn = document.createElement('button');
 scissorsBtn.textContent = 'Scissors';
 
+let roundResult = document.createElement('div');
+
 container.appendChild(rockBtn);
 container.appendChild(paperBtn);
 container.appendChild(scissorsBtn);
+container.appendChild(roundResult);
 
 document.body.appendChild(container);
 
 rockBtn.addEventListener('click', () => {
     let result = playRound('Rock', getComputerChoice());
-    console.log(result);
+    
+    // Clean roundResult to avoid round results stacking
+    roundResult.textContent = '';
+    roundResult.textContent = result;
 });
 
 paperBtn.addEventListener('click', () => {
     let result = playRound('Paper', getComputerChoice());
-    console.log(result);
+    
+    // Clean roundResult to avoid round results stacking
+    roundResult.textContent = '';
+    roundResult.textContent = result;
 });
 
 scissorsBtn.addEventListener('click', () => {
     let result = playRound('Scissors', getComputerChoice());
-    console.log(result);
+    
+    // Clean roundResult to avoid round results stacking
+    roundResult.textContent = '';
+    roundResult.textContent = result;
 });
 
 // Play an entire game consisting of 5 rounds
