@@ -19,13 +19,6 @@ function getComputerChoice() {
     }
 }
 
-// Get Player choice
-function getHumanChoice() {
-    let userChoice = prompt("Rock, Paper or Scissors?");
-
-    return userChoice.charAt(0).toUpperCase() + userChoice.slice(1).toLowerCase();
-}
-
 // Define a single round
 function playRound(humanChoice, computerChoice) {
     // Get user and computer's choices and declare results
@@ -81,26 +74,34 @@ function playGame(event) {
     }
 }
 
-const container = document.createElement('div');
+const container = document.createElement('main');
+container.classList.add('container');
+const buttonsContainer = document.createElement('div');
+buttonsContainer.classList.add('buttons');
 
 const rockBtn = document.createElement('button');
 rockBtn.textContent = 'Rock';
+rockBtn.classList.add('btn');
 const paperBtn = document.createElement('button');
 paperBtn.textContent = 'Paper';
+paperBtn.classList.add('btn');
 const scissorsBtn = document.createElement('button');
 scissorsBtn.textContent = 'Scissors';
+scissorsBtn.classList.add('btn');
 
 let roundResult = document.createElement('div');
 
-container.appendChild(rockBtn);
-container.appendChild(paperBtn);
-container.appendChild(scissorsBtn);
+buttonsContainer.appendChild(rockBtn);
+buttonsContainer.appendChild(paperBtn);
+buttonsContainer.appendChild(scissorsBtn);
+container.appendChild(buttonsContainer);
 container.appendChild(roundResult);
 
 let humanScore = 0;
 let computerScore = 0;
 
-let score = document.createElement('div');
+let score = document.createElement('p');
+score.classList.add('score');
 score.textContent = `Player: ${humanScore} Computer: ${computerScore}`;
 
 container.appendChild(score);
