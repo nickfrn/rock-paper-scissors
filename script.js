@@ -40,6 +40,7 @@ function getWinner(playerScore, cpuScore) {
     score.textContent = '';
 
     const winner = document.createElement('div');
+    winner.classList.add('gameResult');
 
     if (playerScore > cpuScore) {
         winner.textContent = 'Player wins!';
@@ -90,12 +91,12 @@ scissorsBtn.textContent = 'Scissors';
 scissorsBtn.classList.add('btn');
 
 let roundResult = document.createElement('div');
+roundResult.classList.add('roundResult');
 
 buttonsContainer.appendChild(rockBtn);
 buttonsContainer.appendChild(paperBtn);
 buttonsContainer.appendChild(scissorsBtn);
 container.appendChild(buttonsContainer);
-container.appendChild(roundResult);
 
 let humanScore = 0;
 let computerScore = 0;
@@ -105,6 +106,7 @@ score.classList.add('score');
 score.textContent = `Player: ${humanScore} Computer: ${computerScore}`;
 
 container.appendChild(score);
+container.appendChild(roundResult);
 
 document.body.appendChild(container);
 
